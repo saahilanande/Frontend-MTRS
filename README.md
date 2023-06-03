@@ -1,9 +1,9 @@
 # Movie Ticket Reservation System (FrontEnd)
-This repository contains the frontend of the Movie Theater Reservation System. MTRS is a project to buy tickets and book seats for films in various theaters.
+This repository contains the frontend of the Movie Theater Reservation System.
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-The Movie Ticket Reservation System is a web application built with Spring Boot 3 and java 11 that allows users to reserve movie tickets online. It provides a user-friendly interface for browsing movies, selecting showtimes, and making reservations. This project aims to simplify the process of managing movie ticket bookings and enhance the overall movie-going experience.
+The Movie Ticket Reservation System - Frontend is a web application built with React and TypeScript that provides a user-friendly interface for browsing movies, selecting showtimes, and making reservations. This project aims to enhance the movie-going experience by simplifying the process of managing movie ticket bookings.
 
 ## Features
 
@@ -15,64 +15,62 @@ The Movie Ticket Reservation System is a web application built with Spring Boot 
 
 ## Technologies Used
 
-Language - Java v17 , TypeScript
+Language - TypeScript, JavaScript
 
-Front end - React v18, React native 
+Framework - React v18, React native 
 
-Backend - Spring boot v3.0
+Cloud - Vercel
 
-Database - PostgreSQL v15
+Unit Testing - Jest
 
-Message Broker - ActiveMQ
+Build tool - Vite
 
-Cloud - Heroku
-
-Unit Testing - Junit
-
-Mock testing - Mockito
-
-Logging = Log4j
-
-Build tool - Maven , Vite
-
-IDE - Intellij
+IDE - VsCode
 
 ## Getting Started
 
-Follow these steps to get the Movie Ticket Reservation System up and running on your local machine:
+Follow these steps to get the Movie Ticket Reservation System - Frontend up and running on your local machine:
 
 1. Clone the repository:
 
    ```shell
    git clone https://github.com/saahilanande/Frontend-MTRS.git
    
-Configure the database:
+2. Install dependencies:
 
-Create a new MySQL database.
-Update the application.properties file with your database connection details.
-Build and run the application:
+      ```shell
+      cd Frontend-MTRS
+      npm install
 
-Open the project in your preferred IDE (e.g., IntelliJ IDEA, Eclipse).
-Build the project and resolve any dependencies.
-Run the application, and it should start on http://localhost:8080.
+3. Configure the API endpoint:
+
+Update the src/.venv file with the appropriate API endpoint URL.
+Start the development server:
+
+      ```shell
+      npm start
+      
 Access the application:
 
-Open a web browser and visit http://localhost:8080 to access the movie ticket reservation system.
-Contributing
-Contributions are welcome! If you'd like to contribute to the Movie Ticket Reservation System, please follow these steps:
+Open a web browser and visit http://localhost:3000 to access the movie ticket reservation system frontend.
+
+## Contributing
+Contributions are welcome! If you'd like to contribute to the Movie Ticket Reservation System - Frontend, please follow these steps:
 
 Fork the repository.
 Create a new branch for your feature or bug fix.
 Make the necessary changes and commit them.
 Push your changes to your forked repository.
 Submit a pull request to the original repository.
-License
+
+## License
 This project is licensed under the MIT License. Feel free to modify and use it according to your needs.
 
-Acknowledgements
-OpenAPI GPT-3.5 for providing assistance in generating responses to user queries.
-Spring Boot for the powerful and easy-to-use Java framework.
-MySQL for the reliable and efficient relational database management system.
-Contact
+## Acknowledgements
+React for the powerful JavaScript library for building user interfaces.
+TypeScript for the typed superset of JavaScript.
+Material UI for the CSS framework used for responsive and mobile-first designs.
+
+
 If you have any questions or suggestions regarding the Movie Ticket Reservation System, feel free to contact us at saahilanande21@gmail.com.
 
