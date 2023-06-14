@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
+import { appContext } from "../App";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -49,11 +50,9 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-interface props {
-  handleSwitch: () => void;
-}
+function ThemeSwitch() {
+  const { handleSwitch } = useContext(appContext);
 
-function ThemeSwitch({ handleSwitch }: props) {
   return (
     <MaterialUISwitch
       sx={{ m: 1 }}
