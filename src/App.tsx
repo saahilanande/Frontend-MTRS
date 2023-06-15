@@ -1,5 +1,4 @@
-import React, { createContext, useState } from "react";
-import Navbar from "./Components/Navbar";
+import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Route, Routes } from "react-router-dom";
