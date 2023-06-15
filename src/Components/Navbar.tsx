@@ -1,13 +1,11 @@
-import { Stack } from "@mui/material";
-import { useContext } from "react";
+import { AppBar, Divider, Stack } from "@mui/material";
 import ThemeSwitch from "./ThemeSwitch";
 
 function Navbar() {
-
   return (
-    <Stack direction={"row"} spacing={2}>
-      <ThemeSwitch/>
-    </Stack>
+    <AppBar position="static">
+      <ThemeSwitch />
+    </AppBar>
   );
 }
 
