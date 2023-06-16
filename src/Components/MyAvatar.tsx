@@ -40,6 +40,7 @@ function MyAvatar() {
         overlap="circular"
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         variant="dot"
+        
       >
         <Avatar src={avatarPc} />
       </StyledBadge>
