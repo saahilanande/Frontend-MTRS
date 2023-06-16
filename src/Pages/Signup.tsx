@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import SignupForm from "../Components/SignupForm";
+import Footer from "../Components/Footer";
 
 function Signup() {
   return (
@@ -13,7 +14,7 @@ function Signup() {
           <SignupForm />
         </Grid>
         <Grid item sm={12} bgcolor={"gold"}>
-          Footer
+          <Footer />
         </Grid>
       </Grid>
     </>

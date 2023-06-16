@@ -12,26 +12,21 @@ import { Container, Box } from "@mui/system";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import React from "react";
 import Link from "@mui/material/Link";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Saahil Makes
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { useFormik } from "formik";
 
 function SignupForm() {
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <>
       <Container component="main" maxWidth="xs">
@@ -50,7 +45,12 @@ function SignupForm() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            sx={{ mt: 3 }}
+            onSubmit={formik.handleSubmit}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -61,6 +61,8 @@ function SignupForm() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={formik.handleChange}
+                  value={formik.values.firstName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -71,6 +73,8 @@ function SignupForm() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={formik.handleChange}
+                  value={formik.values.lastName}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -81,6 +85,8 @@ function SignupForm() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -92,6 +98,8 @@ function SignupForm() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -120,7 +128,6 @@ function SignupForm() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </>
   );
