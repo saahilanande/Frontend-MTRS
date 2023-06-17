@@ -7,14 +7,33 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
+  Alert,
 } from "@mui/material";
 import { Container, Box } from "@mui/system";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import React from "react";
 import Link from "@mui/material/Link";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 
 function SignupForm() {
+  const handleSubmit = () => {};
+
+  const validationSchema = Yup.object().shape({
+    firstName: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    lastName: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string()
+      .required("No password provided.")
+      .min(5, "Password is too short - should be 5 chars minimum."),
+  });
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -22,6 +41,7 @@ function SignupForm() {
       email: "",
       password: "",
     },
+    validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -63,6 +83,16 @@ function SignupForm() {
                   autoFocus
                   onChange={formik.handleChange}
                   value={formik.values.firstName}
+                  error={
+                    formik.errors.firstName && formik.touched.firstName
+                      ? true
+                      : false
+                  }
+                  helperText={
+                    formik.errors.firstName && formik.touched.firstName
+                      ? "" + formik.errors.firstName
+                      : null
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -75,6 +105,16 @@ function SignupForm() {
                   autoComplete="family-name"
                   onChange={formik.handleChange}
                   value={formik.values.lastName}
+                  error={
+                    formik.errors.lastName && formik.touched.lastName
+                      ? true
+                      : false
+                  }
+                  helperText={
+                    formik.errors.lastName && formik.touched.lastName
+                      ? "" + formik.errors.lastName
+                      : null
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -87,6 +127,14 @@ function SignupForm() {
                   autoComplete="email"
                   onChange={formik.handleChange}
                   value={formik.values.email}
+                  error={
+                    formik.errors.email && formik.touched.email ? true : false
+                  }
+                  helperText={
+                    formik.errors.email && formik.touched.email
+                      ? "" + formik.errors.email
+                      : null
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -100,8 +148,25 @@ function SignupForm() {
                   autoComplete="new-password"
                   onChange={formik.handleChange}
                   value={formik.values.password}
+                  error={
+                    formik.errors.password && formik.touched.password
+                      ? true
+                      : false
+                  }
+                  helperText={
+                    formik.errors.password && formik.touched.password
+                      ? "" + formik.errors.password
+                      : null
+                  }
                 />
               </Grid>
+              {/* <Grid item xs={12}>
+                {formik.errors.firstName && formik.touched.firstName ? (
+                  <Alert variant="outlined" severity="error">
+                    FirstName: {formik.errors.firstName}
+                  </Alert>
+                ) : null}
+              </Grid> */}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
