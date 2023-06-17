@@ -8,6 +8,8 @@ import {
   FormControlLabel,
   Checkbox,
   Alert,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
 import { Container, Box } from "@mui/system";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -17,11 +19,15 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import ApiClient from "../Services/Api-Client";
 import { useNavigate } from "react-router-dom";
+import { VisibilityOff, Visibility } from "@mui/icons-material";
 
 function SignupForm() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [emailExist, setEmailExist] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -171,7 +177,7 @@ function SignupForm() {
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
                   onChange={formik.handleChange}
@@ -186,6 +192,21 @@ function SignupForm() {
                       ? "" + formik.errors.password
                       : null
                   }
+                  InputProps={{
+                    // <-- This is where the toggle button is added.
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          // onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
