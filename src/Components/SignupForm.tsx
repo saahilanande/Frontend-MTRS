@@ -15,10 +15,9 @@ import React from "react";
 import Link from "@mui/material/Link";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import RegisterUser from "../Services/RegisterUser";
 
 function SignupForm() {
-  const handleSubmit = () => {};
-
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Too Short!")
