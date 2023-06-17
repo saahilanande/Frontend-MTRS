@@ -11,13 +11,18 @@ import {
 } from "@mui/material";
 import { Container, Box } from "@mui/system";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import React from "react";
+import React, { useState } from "react";
 import Link from "@mui/material/Link";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import RegisterUser from "../Services/RegisterUser";
+import ApiClient from "../Services/Api-Client";
+import { useNavigate } from "react-router-dom";
 
 function SignupForm() {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [emailExist, setEmailExist] = useState(false);
+
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Too Short!")
@@ -42,7 +47,31 @@ function SignupForm() {
     },
     validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const UserInfo = {
+        role: "test",
+        username: values.firstName + values.lastName,
+        password: values.password,
+        email: values.email,
+        phone: 9999,
+      };
+
+      setIsLoading(true);
+      ApiClient.post("user/signup", UserInfo)
+        .then((res) => {
+          if (res.status === 208) {
+            setEmailExist(true);
+            setIsLoading(false);
+          }
+          if (res.status == 200) {
+            setIsLoading(false);
+            navigate("/login");
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+          setIsLoading(false);
+          alert(err.message);
+        });
     },
   });
 
@@ -159,13 +188,14 @@ function SignupForm() {
                   }
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                {formik.errors.firstName && formik.touched.firstName ? (
+              <Grid item xs={12}>
+                {emailExist ? (
                   <Alert variant="outlined" severity="error">
-                    FirstName: {formik.errors.firstName}
+                    Sign in to this account or enter an email address that isn't
+                    already in use.
                   </Alert>
                 ) : null}
-              </Grid> */}
+              </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
@@ -179,6 +209,7 @@ function SignupForm() {
               type="submit"
               fullWidth
               variant="contained"
+              disabled={isLoading}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
