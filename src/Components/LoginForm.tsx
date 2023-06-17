@@ -1,4 +1,3 @@
-import { Copyright } from "@mui/icons-material";
 import {
   Container,
   CssBaseline,
@@ -13,10 +12,30 @@ import {
 } from "@mui/material";
 import Link from "@mui/material/Link";
 import LoginIcon from "@mui/icons-material/Login";
+import * as Yup from "yup";
 import React from "react";
+import { useFormik } from "formik";
 
 function LoginForm() {
   const handleSubmit = () => {};
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string()
+      .required("No password provided.")
+      .min(5, "Password is too short - should be 5 chars minimum."),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      alert(values);
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -35,7 +54,12 @@ function LoginForm() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box
+          component="form"
+          onSubmit={formik.handleSubmit}
+          noValidate
+          sx={{ mt: 1 }}
+        >
           <TextField
             margin="normal"
             required
@@ -45,6 +69,14 @@ function LoginForm() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            error={formik.errors.email && formik.touched.email ? true : false}
+            helperText={
+              formik.errors.email && formik.touched.email
+                ? "" + formik.errors.email
+                : null
+            }
           />
           <TextField
             margin="normal"
@@ -55,6 +87,16 @@ function LoginForm() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            error={
+              formik.errors.password && formik.touched.password ? true : false
+            }
+            helperText={
+              formik.errors.password && formik.touched.password
+                ? "" + formik.errors.password
+                : null
+            }
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
