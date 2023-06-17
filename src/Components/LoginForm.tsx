@@ -9,15 +9,22 @@ import {
   Checkbox,
   Button,
   Grid,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
 import Link from "@mui/material/Link";
 import LoginIcon from "@mui/icons-material/Login";
 import * as Yup from "yup";
-import React from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
+import { VisibilityOff, Visibility } from "@mui/icons-material";
 
 function LoginForm() {
   const handleSubmit = () => {};
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -97,6 +104,21 @@ function LoginForm() {
                 ? "" + formik.errors.password
                 : null
             }
+            InputProps={{
+              // <-- This is where the toggle button is added.
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    // onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
