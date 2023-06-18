@@ -20,7 +20,6 @@ import { useFormik } from "formik";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 
 function LoginForm() {
-  const handleSubmit = () => {};
 
   const [showPassword, setShowPassword] = useState(false);
 
