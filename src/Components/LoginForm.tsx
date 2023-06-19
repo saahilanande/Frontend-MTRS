@@ -11,6 +11,8 @@ import {
   Grid,
   IconButton,
   InputAdornment,
+  Alert,
+  CircularProgress,
 } from "@mui/material";
 import Link from "@mui/material/Link";
 import LoginIcon from "@mui/icons-material/Login";
@@ -18,10 +20,14 @@ import * as Yup from "yup";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import ApiClient from "../Services/Api-Client";
 
 function LoginForm() {
-
   const [showPassword, setShowPassword] = useState(false);
+  const [invalidCred, setInvalidCred] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -39,7 +45,40 @@ function LoginForm() {
     },
     validationSchema,
     onSubmit: (values) => {
-      alert(values);
+      setInvalidCred(false);
+      const userInfo = {
+        password: values.password,
+        email: values.email,
+      };
+
+      setIsLoading(true);
+      ApiClient.post("/user/login", userInfo)
+        .then((res) => {
+          if (res.status == 200) {
+            // signIn({
+            //   token: res.data.accessToken,
+            //   expiresIn: 500,
+            //   tokenType: "Bearer",
+            //   authState: {
+            //     userId: res.data.userId,
+            //     apiKey: res.data.api_key,
+            //   },
+            // });
+            // navigate("/home");
+            console.log(res.data);
+          }
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          if (err.response.status === 403) {
+            setInvalidCred(true);
+            values.email = "";
+            values.password = "";
+            setIsLoading(false);
+          } else {
+            alert(err.message);
+          }
+        });
     },
   });
 
@@ -90,7 +129,7 @@ function LoginForm() {
             fullWidth
             name="password"
             label="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             autoComplete="current-password"
             onChange={formik.handleChange}
@@ -119,17 +158,26 @@ function LoginForm() {
               ),
             }}
           />
+          <Grid item xs={12}>
+            {invalidCred ? (
+              <Alert variant="outlined" severity="error">
+                Invalid Email or Password
+              </Alert>
+            ) : null}
+          </Grid>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+
           <Button
             type="submit"
             fullWidth
             variant="contained"
+            disabled={isLoading}
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Sign {isLoading ? <CircularProgress size={5} /> : null}In
           </Button>
           <Grid container>
             <Grid item xs>
