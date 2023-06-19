@@ -38,6 +38,7 @@ function SignupForm() {
       .min(2, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
+    phoneno: Yup.number().required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
       .required("No password provided.")
@@ -48,6 +49,7 @@ function SignupForm() {
     initialValues: {
       firstName: "",
       lastName: "",
+      phoneno: "",
       email: "",
       password: "",
     },
@@ -58,7 +60,7 @@ function SignupForm() {
         username: values.firstName + values.lastName,
         password: values.password,
         email: values.email,
-        phone: 9999,
+        phone: values.phoneno,
       };
 
       setIsLoading(true);
@@ -155,6 +157,28 @@ function SignupForm() {
                 <TextField
                   required
                   fullWidth
+                  id="phoneno"
+                  label="Phone no"
+                  name="phoneno"
+                  autoComplete="family-name"
+                  onChange={formik.handleChange}
+                  value={formik.values.phoneno}
+                  error={
+                    formik.errors.phoneno && formik.touched.phoneno
+                      ? true
+                      : false
+                  }
+                  helperText={
+                    formik.errors.phoneno && formik.touched.phoneno
+                      ? "" + formik.errors.phoneno
+                      : null
+                  }
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
@@ -199,7 +223,6 @@ function SignupForm() {
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
-                          // onMouseDown={handleMouseDownPassword}
                           edge="end"
                         >
                           {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -233,7 +256,7 @@ function SignupForm() {
               disabled={isLoading}
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              {isLoading ? "Signing Up" : "Sign Up"}
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
