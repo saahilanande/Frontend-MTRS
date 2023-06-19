@@ -256,7 +256,7 @@ function SignupForm() {
               disabled={isLoading}
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              {isLoading ? "Signing Up" : "Sign Up"}
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

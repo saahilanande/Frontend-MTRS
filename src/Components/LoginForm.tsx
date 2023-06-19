@@ -12,7 +12,6 @@ import {
   IconButton,
   InputAdornment,
   Alert,
-  CircularProgress,
 } from "@mui/material";
 import Link from "@mui/material/Link";
 import LoginIcon from "@mui/icons-material/Login";
@@ -22,12 +21,14 @@ import { useFormik } from "formik";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ApiClient from "../Services/Api-Client";
+import { useSignIn } from "react-auth-kit";
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [invalidCred, setInvalidCred] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const signIn = useSignIn();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -55,29 +56,28 @@ function LoginForm() {
       ApiClient.post("/user/login", userInfo)
         .then((res) => {
           if (res.status == 200) {
-            // signIn({
-            //   token: res.data.accessToken,
-            //   expiresIn: 500,
-            //   tokenType: "Bearer",
-            //   authState: {
-            //     userId: res.data.userId,
-            //     apiKey: res.data.api_key,
-            //   },
-            // });
-            // navigate("/home");
+            signIn({
+              token: res.data.jwt,
+              expiresIn: 500,
+              tokenType: "Bearer",
+              authState: {
+                userId: res.data.email,
+              },
+            });
+            navigate("/home");
             console.log(res.data);
           }
           setIsLoading(false);
         })
         .catch((err) => {
-          if (err.response.status === 403) {
+          if ((err.response.status === 403, 401)) {
             setInvalidCred(true);
             values.email = "";
             values.password = "";
-            setIsLoading(false);
           } else {
             alert(err.message);
           }
+          setIsLoading(false);
         });
     },
   });
@@ -177,7 +177,7 @@ function LoginForm() {
             disabled={isLoading}
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign {isLoading ? <CircularProgress size={5} /> : null}In
+            {isLoading ? "Signing In..." : "Sign In"}
           </Button>
           <Grid container>
             <Grid item xs>

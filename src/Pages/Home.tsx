@@ -1,15 +1,25 @@
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import React from "react";
 import Navbar from "../Components/Navbar";
+import { useSignOut } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const signOut = useSignOut();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/login");
+    signOut();
+  };
+
   return (
     <Grid container>
       <Grid item sm={12} bgcolor={"red"}>
         <Navbar />
       </Grid>
       <Grid item sm={12} bgcolor={"blue"}>
-        Main
+        <Button onClick={() => handleLogout()}>LOG out</Button>
       </Grid>
       <Grid item sm={12} bgcolor={"gold"}>
         Footer
