@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import Home from "./Pages/Home";
+import { RequireAuth } from "react-auth-kit";
 
 interface IthemeContext {
   handleSwitch: () => void;
@@ -33,7 +34,14 @@ function App() {
         <CssBaseline />
         <>
           <Routes>
-            <Route element={<Home />} path="/"></Route>
+            <Route
+              element={
+                <RequireAuth loginPath={"/login"}>
+                  <Home />
+                </RequireAuth>
+              }
+              path="/"
+            ></Route>
             <Route element={<Login />} path="/login"></Route>
             <Route element={<Signup />} path="/signup"></Route>
           </Routes>

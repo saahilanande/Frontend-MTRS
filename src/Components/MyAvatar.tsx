@@ -1,8 +1,9 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
-import { Avatar } from "@mui/material";
+import { Avatar, Menu, Tooltip } from "@mui/material";
 import avatarPc from "../assets/avatar.png";
+import MenuItem from "@mui/material/MenuItem";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -34,16 +35,39 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 function MyAvatar() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <>
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        variant="dot"
-        
+      <Tooltip title="Open settings">
+        <StyledBadge
+          overlap="circular"
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          variant="dot"
+          onClick={handleClick}
+        >
+          <Avatar src={avatarPc} />
+        </StyledBadge>
+      </Tooltip>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
       >
-        <Avatar src={avatarPc} />
-      </StyledBadge>
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
     </>
   );
 }
