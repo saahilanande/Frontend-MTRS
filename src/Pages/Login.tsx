@@ -8,13 +8,13 @@ function Login() {
   return (
     <>
       <Grid container>
-        <Grid item sm={12} bgcolor={"red"}>
+        <Grid item sm={12}>
           <Navbar />
         </Grid>
-        <Grid item sm={12} bgcolor={"blue"}>
+        <Grid item sm={12}>
           <LoginForm />
         </Grid>
-        <Grid item sm={12} bgcolor={"gold"}>
+        <Grid item sm={12}>
           <Footer />
         </Grid>
       </Grid>
