@@ -25,6 +25,7 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ApiClient from "../Services/Api-Client";
 import { useSignIn } from "react-auth-kit";
+import { getSocialLoginUrl } from "../Environment/SocialUrl";
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -205,6 +206,7 @@ function LoginForm() {
           variant="outlined"
           startIcon={<GoogleIcon />}
           size="large"
+          href="/"
           fullWidth
         >
           Continue with Google
@@ -213,6 +215,7 @@ function LoginForm() {
           variant="outlined"
           startIcon={<GitHubIcon />}
           size="large"
+          href={getSocialLoginUrl("github")}
           fullWidth
           sx={{ mt: 2 }}
         >
