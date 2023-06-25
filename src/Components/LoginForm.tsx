@@ -206,7 +206,7 @@ function LoginForm() {
           variant="outlined"
           startIcon={<GoogleIcon />}
           size="large"
-          href="/"
+          href={getSocialLoginUrl("google")}
           fullWidth
         >
           Continue with Google
