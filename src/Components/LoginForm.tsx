@@ -12,9 +12,12 @@ import {
   IconButton,
   InputAdornment,
   Alert,
+  Divider,
 } from "@mui/material";
 import Link from "@mui/material/Link";
 import LoginIcon from "@mui/icons-material/Login";
+import GoogleIcon from "@mui/icons-material/Google";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import * as Yup from "yup";
 import { useState } from "react";
 import { useFormik } from "formik";
@@ -22,6 +25,7 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ApiClient from "../Services/Api-Client";
 import { useSignIn } from "react-auth-kit";
+import { getSocialLoginUrl } from "../Environment/SocialUrl";
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -192,6 +196,31 @@ function LoginForm() {
             </Grid>
           </Grid>
         </Box>
+      </Box>
+      <Box sx={{ mt: 2 }}>
+        {" "}
+        <Divider>OR</Divider>
+      </Box>
+      <Box sx={{ mt: 2 }}>
+        <Button
+          variant="outlined"
+          startIcon={<GoogleIcon />}
+          size="large"
+          href={getSocialLoginUrl("google")}
+          fullWidth
+        >
+          Continue with Google
+        </Button>
+        <Button
+          variant="outlined"
+          startIcon={<GitHubIcon />}
+          size="large"
+          href={getSocialLoginUrl("github")}
+          fullWidth
+          sx={{ mt: 2 }}
+        >
+          Continue with GitHub
+        </Button>
       </Box>
     </Container>
   );
