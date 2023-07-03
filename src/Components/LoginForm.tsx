@@ -68,7 +68,7 @@ function LoginForm() {
                 userId: res.data.email,
               },
             });
-            navigate("/home");
+            navigate("/");
             console.log(res.data);
           }
           setIsLoading(false);
