@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar";
 import { useSignOut } from "react-auth-kit";
 import { useNavigate } from "react-router-dom";
 import useFetchMovie from "../Hooks/useFetchMovie";
+import MovieCarousel from "../Components/MovieCarousel";
 
 function Home() {
   const signOut = useSignOut();
@@ -21,13 +22,7 @@ function Home() {
         <Navbar />
       </Grid>
       <Grid item sm={12} bgcolor={"blue"}>
-        <List>
-          {movieData.map((data) => (<>
-            <ListItem>{data.title}</ListItem>
-            <ListItem>{data.movieImg}</ListItem>
-            </>
-          ))}
-        </List>
+        <MovieCarousel items={movieData} />
       </Grid>
       <Grid item sm={12} bgcolor={"gold"}>
         Footer
