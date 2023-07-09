@@ -21,7 +21,7 @@ function Home() {
       <Grid item sm={12} bgcolor={"red"}>
         <Navbar />
       </Grid>
-      <Grid item sm={12} bgcolor={"blue"}>
+      <Grid item sm={12}>
         <MovieCarousel items={movieData} />
       </Grid>
       <Grid item sm={12} bgcolor={"gold"}>
