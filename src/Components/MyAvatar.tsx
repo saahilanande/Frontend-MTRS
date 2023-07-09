@@ -4,6 +4,8 @@ import Badge from "@mui/material/Badge";
 import { Avatar, Menu, Tooltip } from "@mui/material";
 import avatarPc from "../assets/avatar.png";
 import MenuItem from "@mui/material/MenuItem";
+import { useSignOut } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -35,6 +37,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 function MyAvatar() {
+  const signOut = useSignOut();
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,6 +46,10 @@ function MyAvatar() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleLogout = () => {
+    navigate("/Login");
+    signOut();
   };
   return (
     <>
@@ -66,7 +74,7 @@ function MyAvatar() {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </>
   );

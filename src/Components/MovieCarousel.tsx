@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { MovieDataSchema } from "../Hooks/useFetchMovie";
-import { Box, Card, CardMedia, Container, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 
 interface props {
   items: MovieDataSchema[];
@@ -9,13 +9,17 @@ interface props {
 
 function MovieCarousel({ items }: props) {
   return (
-    <Container
-      sx={{
-        p: 10,
-      }}
-    >
-      <Carousel>
-        {items.map((data) => (
+    <Carousel>
+      {items.map((data) => (
+        <Box
+          key={data.movie_id}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          style={{
+            backgroundImage: `url(${data.movieImg})`,
+          }}
+        >
           <Box
             component="img"
             src={data.movieImg}
@@ -24,11 +28,12 @@ function MovieCarousel({ items }: props) {
               width: 350,
               maxHeight: { xs: 400, md: 400 },
               maxWidth: { xs: 350, md: 250 },
+              m: 5,
             }}
           />
-        ))}
-      </Carousel>
-    </Container>
+        </Box>
+      ))}
+    </Carousel>
   );
 }
 
