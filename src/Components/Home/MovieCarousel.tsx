@@ -25,6 +25,7 @@ function MovieCarousel({ items }: props) {
         spaceBetween={50}
         slidesPerView={5}
         centeredSlides={true}
+        loop={true}
         navigation={true}
         modules={[Navigation, EffectCoverflow]}
         effect={"coverflow"}
