@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar";
 import { useSignOut } from "react-auth-kit";
 import { useNavigate } from "react-router-dom";
 import useFetchMovie from "../Hooks/useFetchMovie";
-import MovieCarousel from "../Components/MovieCarousel";
+import MovieCarousel from "../Components/Home/MovieCarousel";
 
 function Home() {
   const signOut = useSignOut();
