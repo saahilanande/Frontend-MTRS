@@ -6,8 +6,15 @@ import { Stack } from "@mui/material";
 function CompanyLogo() {
   return (
     <div>
-      <Stack direction={"row"} alignContent={"flex-start"}>
-        <CameraIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+      <Stack
+        direction={"row"}
+        alignContent={"flex-start"}
+        sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+      >
+        <CameraIcon
+          sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          color="error"
+        />
         <Typography
           variant="h6"
           noWrap

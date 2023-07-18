@@ -7,7 +7,7 @@ export interface MovieDataSchema {
   genre: string;
   duration: string;
   movieImg: string;
-  releaseDate: number;
+  releaseDate: string;
   rating: number;
 }
 
