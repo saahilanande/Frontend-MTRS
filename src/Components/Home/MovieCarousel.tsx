@@ -1,8 +1,18 @@
 import React from "react";
-import Carousel from "react-material-ui-carousel";
 import { MovieDataSchema } from "../../Hooks/useFetchMovie";
 import MovieCard from "./MovieCard";
 import { Box } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import {
+  Autoplay,
+  Pagination,
+  Navigation,
+  EffectCoverflow,
+} from "swiper/modules";
 
 interface props {
   items: MovieDataSchema[];
@@ -10,12 +20,26 @@ interface props {
 
 function MovieCarousel({ items }: props) {
   return (
-    <Box sx={{ backgroundColor: "rgba(0,0,0, 0.4)" }}>
-      <Carousel IndicatorIcon={false}>
+    <Box>
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={5}
+        centeredSlides={true}
+        navigation={true}
+        modules={[Navigation, EffectCoverflow]}
+        effect={"coverflow"}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 30,
+          modifier: 4,
+          slideShadows: false,
+        }}
+      >
         {items.map((data) => (
-          <MovieCard data={data} />
+          <SwiperSlide>{<MovieCard data={data}></MovieCard>}</SwiperSlide>
         ))}
-      </Carousel>
+      </Swiper>
     </Box>
   );
 }

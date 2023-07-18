@@ -18,8 +18,9 @@ function MovieCard({ data }: props) {
           backgroundImage: `url(${data.movieImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: `blur(50px)`,
+          filter: `blur(100px)`,
           zIndex: -1,
+          backgroundColor: "rgba(0,0,0, 0.4)",
         }}
       ></Box>
       <Stack>
@@ -27,10 +28,8 @@ function MovieCard({ data }: props) {
           component="img"
           src={data.movieImg}
           sx={{
-            height: 450,
-            width: 400,
-            maxHeight: { xs: 450, md: 400 },
-            maxWidth: { xs: 350, md: 250 },
+            maxHeight: { xs: 350, md: 450 },
+            maxWidth: { xs: 200, md: 300 },
             m: 2,
           }}
         />
@@ -82,6 +81,7 @@ function MovieCard({ data }: props) {
               borderRadius: "38px",
               maxWidth: "50%",
               padding: "12px 24px",
+              marginBottom: "20px",
             }}
           >
             Get Tickets
