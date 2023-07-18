@@ -1,7 +1,7 @@
 import React from "react";
 import useFetchMovie from "../../Hooks/useFetchMovie";
 import MovieCard from "./MovieCard";
-import { Box } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -35,6 +35,33 @@ function MovieCarousel() {
           slideShadows: false,
         }}
       >
+        <span slot="container-start">
+          <Box
+            borderBottom={1}
+            marginBottom={2}
+            marginLeft={20}
+            marginRight={15}
+          >
+            <Stack direction={"row"}>
+              <Typography
+                variant="h2"
+                fontSize={"40px"}
+                fontWeight={800}
+                marginBottom={2}
+                marginTop={8}
+              >
+                Movies at MTRS
+              </Typography>
+              <Button
+                sx={{ marginLeft: "auto", marginTop: 8 }}
+                color="secondary"
+              >
+                Now Playing
+              </Button>
+              <Button sx={{ marginTop: 8 }}>Coming Soon</Button>
+            </Stack>
+          </Box>
+        </span>
         {movieData.map((data) => (
           <SwiperSlide>{<MovieCard data={data}></MovieCard>}</SwiperSlide>
         ))}

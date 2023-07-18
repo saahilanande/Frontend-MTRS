@@ -46,7 +46,12 @@ function MovieCard({ data }: props) {
           {data.title}
         </Typography>
         <Stack mt={2} mb={1}>
-          <Stack justifyContent="center" spacing={1} direction="row">
+          <Stack
+            justifyContent="center"
+            spacing={0.5}
+            direction="row"
+            divider={<Divider orientation="vertical" flexItem />}
+          >
             <Typography
               fontSize={".75rem"}
               fontFamily={"gordita,Helvetica,sans-serif"}
