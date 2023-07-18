@@ -3,13 +3,11 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import { useSignOut } from "react-auth-kit";
 import { useNavigate } from "react-router-dom";
-import useFetchMovie from "../Hooks/useFetchMovie";
 import MovieCarousel from "../Components/Home/MovieCarousel";
 
 function Home() {
   const signOut = useSignOut();
   const navigate = useNavigate();
-  const { movieData, isLoading, isError } = useFetchMovie();
 
   const handleLogout = () => {
     navigate("/Login");
@@ -22,7 +20,7 @@ function Home() {
         <Navbar />
       </Grid>
       <Grid item sm={12}>
-        <MovieCarousel items={movieData} />
+        <MovieCarousel />
       </Grid>
       <Grid item sm={12} bgcolor={"gold"}>
         Footer

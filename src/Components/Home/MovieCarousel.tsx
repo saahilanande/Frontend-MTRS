@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieDataSchema } from "../../Hooks/useFetchMovie";
+import useFetchMovie from "../../Hooks/useFetchMovie";
 import MovieCard from "./MovieCard";
 import { Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,11 +14,9 @@ import {
   EffectCoverflow,
 } from "swiper/modules";
 
-interface props {
-  items: MovieDataSchema[];
-}
+function MovieCarousel() {
+  const { movieData, isLoading, isError } = useFetchMovie(0, 20);
 
-function MovieCarousel({ items }: props) {
   return (
     <Box>
       <Swiper
@@ -37,7 +35,7 @@ function MovieCarousel({ items }: props) {
           slideShadows: false,
         }}
       >
-        {items.map((data) => (
+        {movieData.map((data) => (
           <SwiperSlide>{<MovieCard data={data}></MovieCard>}</SwiperSlide>
         ))}
       </Swiper>

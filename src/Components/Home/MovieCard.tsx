@@ -37,7 +37,7 @@ function MovieCard({ data }: props) {
           align="center"
           variant="h3"
           sx={{
-            fontSize: "19px",
+            fontSize: "24px",
             fontWeight: "900",
             fontFamily: "gordita,Helvetica,sans-serif",
             ":hover": { cursor: "pointer" },
