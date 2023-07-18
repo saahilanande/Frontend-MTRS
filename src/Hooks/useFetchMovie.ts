@@ -11,13 +11,13 @@ export interface MovieDataSchema {
   rating: number;
 }
 
-const useFetchMovie = () => {
+const useFetchMovie = (pageNo: number, pageSize: number) => {
   const [movieData, setMovieData] = useState<MovieDataSchema[]>([]);
   const [isLoading, setisLoading] = useState(false);
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
-    ApiClient.get("/movie/")
+    ApiClient.get("/movie/", { params: { pageNo: pageNo, pageSize: pageSize } })
       .then((res) => {
         setMovieData(res.data);
         setisLoading(false);

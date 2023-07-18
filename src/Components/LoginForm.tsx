@@ -91,13 +91,14 @@ function LoginForm() {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 2,
+          marginBottom: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <Avatar sx={{ m: 1 }}>
           <LoginIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
