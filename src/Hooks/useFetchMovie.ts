@@ -17,6 +17,7 @@ const useFetchMovie = (pageNo: number, pageSize: number) => {
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
+    setisLoading(true);
     ApiClient.get("/movie/", { params: { pageNo: pageNo, pageSize: pageSize } })
       .then((res) => {
         setMovieData(res.data);

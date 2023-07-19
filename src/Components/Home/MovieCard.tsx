@@ -31,6 +31,7 @@ function MovieCard({ data }: props) {
             maxHeight: { xs: 350, md: 450 },
             maxWidth: { xs: 200, md: 300 },
             m: 2,
+            ":hover": { cursor: "pointer" },
           }}
         />
         <Typography
