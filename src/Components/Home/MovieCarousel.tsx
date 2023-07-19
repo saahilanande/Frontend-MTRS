@@ -7,15 +7,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import {
-  Autoplay,
-  Pagination,
-  Navigation,
-  EffectCoverflow,
-} from "swiper/modules";
+import { Autoplay, Navigation, EffectCoverflow } from "swiper/modules";
+import SkeletonCard from "./SkeletonCard";
 
 function MovieCarousel() {
   const { movieData, isLoading, isError } = useFetchMovie(0, 20);
+  let skeletonArray = Array.from({ length: 20 });
 
   return (
     <Box>
@@ -30,7 +27,7 @@ function MovieCarousel() {
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
-          depth: 30,
+          depth: 20,
           modifier: 4,
           slideShadows: false,
         }}
@@ -62,9 +59,15 @@ function MovieCarousel() {
             </Stack>
           </Box>
         </span>
-        {movieData.map((data) => (
-          <SwiperSlide>{<MovieCard data={data}></MovieCard>}</SwiperSlide>
-        ))}
+        {isLoading
+          ? skeletonArray.map(() => (
+              <SwiperSlide>{<SkeletonCard />}</SwiperSlide>
+            ))
+          : movieData.map((data) => (
+              <SwiperSlide id={data.movie_id}>
+                {<MovieCard data={data}></MovieCard>}
+              </SwiperSlide>
+            ))}
       </Swiper>
     </Box>
   );
