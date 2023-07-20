@@ -23,9 +23,8 @@ function MovieCarousel() {
         <Swiper
           initialSlide={5}
           spaceBetween={50}
-          slidesPerView={5}
-          centeredSlides={true}
           loop={true}
+          slidesPerView={5}
           navigation={true}
           modules={[Navigation, EffectCoverflow]}
           effect={"coverflow"}
