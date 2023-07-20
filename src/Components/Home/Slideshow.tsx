@@ -13,7 +13,6 @@ function Slideshow() {
         spaceBetween={50}
         modules={[Navigation, Autoplay, Pagination]}
         pagination={{
-          dynamicBullets: true,
           clickable: true,
         }}
         autoplay={{
