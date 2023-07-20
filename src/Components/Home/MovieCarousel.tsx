@@ -22,7 +22,7 @@ function MovieCarousel() {
       ) : (
         <Swiper
           initialSlide={5}
-          spaceBetween={50}
+          spaceBetween={200}
           loop={true}
           slidesPerView={5}
           navigation={true}
