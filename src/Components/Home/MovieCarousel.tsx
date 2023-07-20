@@ -1,4 +1,3 @@
-import React from "react";
 import useFetchMovie from "../../Hooks/useFetchMovie";
 import MovieCard from "./MovieCard";
 import { Box, Button, Stack, Typography } from "@mui/material";
@@ -7,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { Autoplay, Navigation, EffectCoverflow } from "swiper/modules";
+import { Navigation, EffectCoverflow } from "swiper/modules";
 import SkeletonCard from "./SkeletonCard";
 
 function MovieCarousel() {
