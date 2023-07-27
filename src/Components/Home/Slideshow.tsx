@@ -1,8 +1,7 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
 
 function Slideshow() {
@@ -16,7 +15,7 @@ function Slideshow() {
           clickable: true,
         }}
         autoplay={{
-          delay: 6000,
+          delay: 8000,
           disableOnInteraction: false,
         }}
       >
