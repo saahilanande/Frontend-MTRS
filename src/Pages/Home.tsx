@@ -5,6 +5,7 @@ import { useSignOut } from "react-auth-kit";
 import { useNavigate } from "react-router-dom";
 import MovieCarousel from "../Components/Home/MovieCarousel";
 import Slideshow from "../Components/Home/Slideshow";
+import Footer from "../Components/Footer";
 
 function Home() {
   const signOut = useSignOut();
@@ -17,15 +18,15 @@ function Home() {
 
   return (
     <Grid container>
-      <Grid item sm={12} bgcolor={"red"}>
+      <Grid item sm={12}>
         <Navbar />
       </Grid>
       <Grid item sm={12}>
         <Slideshow />
         <MovieCarousel />
       </Grid>
-      <Grid item sm={12} bgcolor={"gold"}>
-        Footer
+      <Grid item sm={12}>
+        <Footer />
       </Grid>
     </Grid>
   );

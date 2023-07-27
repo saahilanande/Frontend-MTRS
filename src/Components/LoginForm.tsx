@@ -186,12 +186,12 @@ function LoginForm() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="/reset" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -218,7 +218,7 @@ function LoginForm() {
           size="large"
           href={getSocialLoginUrl("github")}
           fullWidth
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, marginBottom: 5 }}
         >
           Continue with GitHub
         </Button>

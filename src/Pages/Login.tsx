@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../Components/Navbar";
 import { Grid } from "@mui/material";
 import Footer from "../Components/Footer";

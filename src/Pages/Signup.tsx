@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import React from "react";
 import SignupForm from "../Components/SignupForm";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
