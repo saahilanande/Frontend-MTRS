@@ -1,26 +1,15 @@
 import { useEffect, useState } from "react";
+import { MovieDataSchema } from "./useFetchMovie";
 import ApiClient from "../Services/Api-Client";
 
-export interface MovieDataSchema {
-  movie_id: string;
-  title: string;
-  genre: string;
-  duration: string;
-  movieImg: string;
-  releaseDate: string;
-  rating: number;
-  description:string;
-  status:string;
-}
-
-const useFetchMovie = (pageNo: number, pageSize: number) => {
-  const [movieData, setMovieData] = useState<MovieDataSchema[]>([]);
+const useDetailMovie = (movieId: number) => {
+  const [movieData, setMovieData] = useState<MovieDataSchema>();
   const [isLoading, setisLoading] = useState(false);
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
     setisLoading(true);
-    ApiClient.get("/movie/", { params: { pageNo: pageNo, pageSize: pageSize } })
+    ApiClient.get("/movie/" + movieId)
       .then((res) => {
         setMovieData(res.data);
         setisLoading(false);
@@ -33,4 +22,4 @@ const useFetchMovie = (pageNo: number, pageSize: number) => {
   return { movieData, isLoading, isError };
 };
 
-export default useFetchMovie;
+export default useDetailMovie;
