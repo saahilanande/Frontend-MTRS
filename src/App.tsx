@@ -8,6 +8,7 @@ import Home from "./Pages/Home";
 import { RequireAuth } from "react-auth-kit";
 import OAuth2Redirect from "./Services/OAuth2Redirect";
 import ForgotPassword from "./Pages/ForgotPassword";
+import Showtime from "./Pages/Showtime";
 
 interface IthemeContext {
   handleSwitch: () => void;
@@ -47,6 +48,7 @@ function App() {
             <Route element={<Login />} path="/login"></Route>
             <Route element={<Signup />} path="/signup"></Route>
             <Route element={<ForgotPassword />} path="/reset"></Route>
+            <Route element={<Showtime />} path="/showtime/:id"></Route>
             <Route path="/oauth2/redirect" element={<OAuth2Redirect />} />
           </Routes>
         </>
