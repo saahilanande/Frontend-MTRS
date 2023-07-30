@@ -5,9 +5,11 @@ import Navbar from "../Components/Navbar";
 import { useParams } from "react-router-dom";
 import MovieDetail from "../Components/MovieDetail";
 import ShowtimeCard from "../Components/ShowtimeCard";
+import useDetailMovie, { MyParams } from "../Hooks/useDetailMovie";
 
 function Showtime() {
-  const { id } = useParams();
+  const { id } = useParams<keyof MyParams>() as MyParams;
+  const { movieData, isLoading, isError } = useDetailMovie(id);
 
   return (
     <>
@@ -21,7 +23,7 @@ function Showtime() {
               position: "absolute",
               height: "100%",
               width: "100%",
-              backgroundImage: `url(${"https://images.pexels.com/photos/1025349/pexels-photo-1025349.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"})`,
+              backgroundImage: `url(${movieData?.movieImg})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               filter: `blur(100px)`,
@@ -29,7 +31,7 @@ function Showtime() {
               backgroundColor: "rgba(0,0,0, 0.4)",
             }}
           ></Box>
-          <MovieDetail />
+          <MovieDetail movieData={movieData} />
           <ShowtimeCard />
         </Grid>
         <Grid item sm={12}>

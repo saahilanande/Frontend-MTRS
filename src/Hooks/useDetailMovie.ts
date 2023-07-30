@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { MovieDataSchema } from "./useFetchMovie";
 import ApiClient from "../Services/Api-Client";
 
-const useDetailMovie = (movieId: number) => {
+export type MyParams = {
+  id: string;
+};
+
+const useDetailMovie = (movieId: string) => {
   const [movieData, setMovieData] = useState<MovieDataSchema>();
   const [isLoading, setisLoading] = useState(false);
   const [isError, setIsError] = useState("");
