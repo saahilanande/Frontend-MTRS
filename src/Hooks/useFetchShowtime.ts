@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ApiClient from "../Services/Api-Client";
 
-interface showtimeShema{
+export interface showtimeShema{
     movieId:number,
     name:string,
     address:string,
@@ -14,22 +14,22 @@ interface showtimeShema{
 const useFetchShowtime = (movieId:String) => {
 
     const [showtimeData, setshowtimeData] = useState<showtimeShema[]>([]);
-    const [isLoading, setisLoading] = useState(false);
-    const [isError, setIsError] = useState("");
+    const [isTimeLoading, setisTimeLoading] = useState(false);
+    const [isTimeError, setIsTimeErrorr] = useState("");
 
     useEffect(() => {
-        setisLoading(true);
+      setisTimeLoading(true);
         ApiClient.get("/showtime/"+movieId)
           .then((res) => {
             setshowtimeData(res.data);
-            setisLoading(false);
+            setisTimeLoading(false);
           })
           .catch((err) => {
-            setIsError(err.message);
-            setisLoading(false);
+            setIsTimeErrorr(err.message);
+            setisTimeLoading(false);
           });
       }, []);
-      return { showtimeData, isLoading, isError };
+      return { showtimeData, isTimeLoading, isTimeError };
 
 };
 export default useFetchShowtime;

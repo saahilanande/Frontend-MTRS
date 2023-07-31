@@ -1,6 +1,7 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
 import { MovieDataSchema } from "../Hooks/useFetchMovie";
+import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
 
 interface props {
   movieData: MovieDataSchema | undefined;
@@ -33,7 +34,19 @@ function MovieDetail({ movieData }: props) {
             >
               {movieData?.title}
             </Typography>
-            <Typography> Duration: {movieData?.duration}</Typography>
+            <Stack
+              direction={"row"}
+              spacing={2}
+              divider={<Divider orientation="vertical" flexItem />}
+            >
+              <Typography> Duration: {movieData?.duration}</Typography>
+              <Typography>{movieData?.genre}</Typography>
+              <Box
+                sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+              >
+                <ThumbsUpDownIcon /> {movieData?.rating}0%
+              </Box>
+            </Stack>
             <Typography marginTop={5}>
               DESCRIPTION {movieData?.description}
             </Typography>
