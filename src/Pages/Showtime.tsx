@@ -1,4 +1,4 @@
-import { Box, Grid, Skeleton } from "@mui/material";
+import { Box, Grid, Skeleton, Typography } from "@mui/material";
 import React from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
@@ -22,6 +22,13 @@ function Showtime() {
           <Navbar />
         </Grid>
         <Grid item sm={12}>
+          {isError ||
+            (isTimeError && (
+              <Typography variant="h1" fontSize={200}>
+                {isError}
+                {isTimeError}
+              </Typography>
+            ))}
           <Box
             style={{
               position: "absolute",
