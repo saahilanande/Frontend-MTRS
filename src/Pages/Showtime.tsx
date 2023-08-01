@@ -1,4 +1,4 @@
-import { Box, Grid, Skeleton, Typography } from "@mui/material";
+import { Box, Container, Grid, Skeleton, Typography } from "@mui/material";
 import React from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
@@ -50,8 +50,12 @@ function Showtime() {
 
           {isTimeLoading ? (
             <ShowtimeSkeleton />
-          ) : (
+          ) : showtimeData.length > 0 ? (
             showtimeData.map((data) => <ShowtimeCard data={data} />)
+          ) : (
+            <Container>
+              <Typography variant="h1"> No Showtime</Typography>
+            </Container>
           )}
         </Grid>
         <Grid item sm={12}>
