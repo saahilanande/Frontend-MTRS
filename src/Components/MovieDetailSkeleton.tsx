@@ -1,7 +1,6 @@
 import { Container, Skeleton, Stack } from "@mui/material";
-import React from "react";
 
-function ShowtimeSkeleton() {
+function MovieDetailSkeleton() {
   return (
     <Container sx={{ padding: "16px" }}>
       <Stack direction={"row"} spacing={2} marginTop={5}>
@@ -16,4 +15,4 @@ function ShowtimeSkeleton() {
   );
 }
 
-export default ShowtimeSkeleton;
+export default MovieDetailSkeleton;
