@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import MovieCarousel from "../Components/Home/MovieCarousel";
 import Slideshow from "../Components/Home/Slideshow";
 import Footer from "../Components/Footer";
+import MovieGrid from "../Components/MovieGrid";
 
 function Home() {
   const signOut = useSignOut();
@@ -24,6 +25,7 @@ function Home() {
       <Grid item sm={12}>
         <Slideshow />
         <MovieCarousel />
+        <MovieGrid />
       </Grid>
       <Grid item sm={12}>
         <Footer />
