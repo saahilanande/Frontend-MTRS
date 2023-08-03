@@ -1,5 +1,4 @@
 import { Box, Stack, Typography, Divider, Button } from "@mui/material";
-import React from "react";
 import { MovieDataSchema } from "../../Hooks/useFetchMovie";
 
 interface props {
