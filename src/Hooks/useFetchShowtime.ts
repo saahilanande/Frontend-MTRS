@@ -3,6 +3,7 @@ import ApiClient from "../Services/Api-Client";
 
 export interface showtimeShema{
     movieId:number,
+    theaterId:number,
     name:string,
     address:string,
     city:string,
