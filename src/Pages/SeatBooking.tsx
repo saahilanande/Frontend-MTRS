@@ -1,9 +1,17 @@
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Seat from "../Components/Seat";
 
 function SeatBooking() {
-  const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
+  const rows = 10; // Change this value to set the number of rows
+  const columns = 12; // Change this value to set the number of columns
+
+  // Create a 2D array to represent the seating arrangement
+  const initialSeats = Array.from({ length: rows }, () =>
+    Array.from({ length: columns }, () => "available")
+  );
+
+  const [seats, setSeats] = useState(initialSeats);
 
   return (
     <Container>
@@ -20,11 +28,11 @@ function SeatBooking() {
         }}
       >
         <Stack direction={"row"} spacing={4}>
-          <Seat seatColor="#626262" />
+          <Seat status="available" onClick={() => {}} />
           <Typography>N/A</Typography>
-          <Seat seatColor="#7bc47f" />
+          <Seat status="selected" onClick={() => {}} />
           <Typography>Selected</Typography>
-          <Seat seatColor="#cfcfcf" />
+          <Seat status="booked" onClick={() => {}} />
           <Typography>Occupied</Typography>
         </Stack>
       </Box>
@@ -41,33 +49,19 @@ function SeatBooking() {
           }}
         ></Box>
       </Container>
-      <Container>
-        <Grid container spacing={1}>
-          {seats.map((seatNo) => (
-            <>
-              <Grid item xs={3}>
-                <Stack direction={"row"} spacing={1}>
-                  <Seat seatColor="#626262"></Seat>
-                  <Seat seatColor="#626262"></Seat>
-                </Stack>
-              </Grid>
-              <Grid item xs={6}>
-                <Stack direction={"row"} spacing={1}>
-                  <Seat seatColor="#626262"></Seat>
-                  <Seat seatColor="#626262"></Seat>
-                  <Seat seatColor="#626262"></Seat>
-                  <Seat seatColor="#626262"></Seat>
-                </Stack>
-              </Grid>
-              <Grid item xs={3}>
-                <Stack direction={"row"} spacing={1}>
-                  <Seat seatColor="#626262"></Seat>
-                  <Seat seatColor="#626262"></Seat>
-                </Stack>
-              </Grid>
-            </>
+
+      <Container
+        sx={{ justifyContent: "center", display: "flex", marginBottom: 5 }}
+      >
+        <div>
+          {seats.map((row, rowIndex) => (
+            <div key={rowIndex}>
+              {row.map((seatStatus, columnIndex) => (
+                <Seat key={columnIndex} status="available" onClick={() => {}} />
+              ))}
+            </div>
           ))}
-        </Grid>
+        </div>
       </Container>
     </Container>
   );
