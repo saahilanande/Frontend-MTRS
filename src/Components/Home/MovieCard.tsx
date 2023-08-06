@@ -1,15 +1,21 @@
 import { Box, Stack, Typography, Divider, Button } from "@mui/material";
 import { MovieDataSchema } from "../../Hooks/useFetchMovie";
+import { useNavigate } from "react-router-dom";
 
 interface props {
   data: MovieDataSchema;
 }
 
 function MovieCard({ data }: props) {
+  const navigate = useNavigate();
+  const handleClick = (id: string) => {
+    navigate("/showtime/" + id);
+  };
+
   return (
     <Box display="flex" justifyContent="center" alignItems="center">
       <Box
-        key={data.movie_id}
+        key={data.movieId}
         style={{
           position: "absolute",
           height: "100%",
@@ -76,6 +82,7 @@ function MovieCard({ data }: props) {
         </Stack>
         <Box textAlign="center">
           <Button
+            onClick={() => handleClick(data.movieId)}
             variant="contained"
             sx={{
               backgroundColor: "#e51937",

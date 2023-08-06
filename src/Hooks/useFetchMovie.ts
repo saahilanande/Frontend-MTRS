@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import ApiClient from "../Services/Api-Client";
 
 export interface MovieDataSchema {
-  movie_id: string;
+  movieId: string;
   title: string;
   genre: string;
   duration: string;
   movieImg: string;
   releaseDate: string;
   rating: number;
-  description:string;
-  status:string;
+  description: string;
+  status: string;
 }
 
 const useFetchMovie = (pageNo: number, pageSize: number) => {

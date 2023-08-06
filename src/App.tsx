@@ -9,7 +9,7 @@ import { RequireAuth } from "react-auth-kit";
 import OAuth2Redirect from "./Services/OAuth2Redirect";
 import ForgotPassword from "./Pages/ForgotPassword";
 import Showtime from "./Pages/Showtime";
-import SeatBooking from "./Pages/seatBooking";
+import SeatBooking from "./Pages/SeatBooking";
 
 interface IthemeContext {
   handleSwitch: () => void;
