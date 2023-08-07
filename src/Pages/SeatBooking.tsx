@@ -1,8 +1,14 @@
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import { useState } from "react";
 import Seat from "../Components/Seat";
+import { useParams } from "react-router-dom";
+import { seatParams } from "../Hooks/useFetchSeat";
 
 function SeatBooking() {
+  const { movieName, theaterName, showtime } = useParams<
+    keyof seatParams
+  >() as seatParams;
+
   const rows = 10; // Change this value to set the number of rows
   const columns = 12; // Change this value to set the number of columns
 
@@ -24,10 +30,12 @@ function SeatBooking() {
       updatedSeats[rowIndex][columnIndex] = "available";
       setSeats(updatedSeats);
     }
+    console.log(rowIndex, columnIndex);
   };
 
   return (
     <Container>
+      <Box>{movieName + theaterName + showtime}</Box>
       <Box
         sx={{
           background: "#3b3b3b",
