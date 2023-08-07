@@ -13,6 +13,19 @@ function SeatBooking() {
 
   const [seats, setSeats] = useState(initialSeats);
 
+  const handleSeatClick = (rowIndex: number, columnIndex: number) => {
+    const seatStatus = seats[rowIndex][columnIndex];
+    if (seatStatus === "available") {
+      const updatedSeats = [...seats];
+      updatedSeats[rowIndex][columnIndex] = "selected";
+      setSeats(updatedSeats);
+    } else if (seatStatus === "selected") {
+      const updatedSeats = [...seats];
+      updatedSeats[rowIndex][columnIndex] = "available";
+      setSeats(updatedSeats);
+    }
+  };
+
   return (
     <Container>
       <Box
@@ -57,7 +70,11 @@ function SeatBooking() {
           {seats.map((row, rowIndex) => (
             <div key={rowIndex}>
               {row.map((seatStatus, columnIndex) => (
-                <Seat key={columnIndex} status="available" onClick={() => {}} />
+                <Seat
+                  key={columnIndex}
+                  status={seatStatus}
+                  onClick={() => handleSeatClick(rowIndex, columnIndex)}
+                />
               ))}
             </div>
           ))}
