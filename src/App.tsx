@@ -52,7 +52,7 @@ function App() {
             <Route element={<Showtime />} path="/showtime/:id"></Route>
             <Route
               element={<SeatBooking />}
-              path="/seat/:movieName/:theaterName/:showtime"
+              path="/seat/:movieId/:theaterId/:movieDate"
             ></Route>
             <Route path="/oauth2/redirect" element={<OAuth2Redirect />} />
           </Routes>

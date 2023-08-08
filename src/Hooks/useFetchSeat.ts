@@ -1,7 +1,7 @@
 export type seatParams = {
-  movieName: string;
-  theaterName: string;
-  showtime: string;
+  movieId: string;
+  theaterId: string;
+  movieDate: string;
 };
 
 const useFetchSeat = () => {};

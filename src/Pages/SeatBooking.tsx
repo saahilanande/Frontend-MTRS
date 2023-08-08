@@ -1,13 +1,16 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Divider, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import Seat from "../Components/Seat";
 import { useParams } from "react-router-dom";
 import { seatParams } from "../Hooks/useFetchSeat";
+import useDetailMovie from "../Hooks/useDetailMovie";
 
 function SeatBooking() {
-  const { movieName, theaterName, showtime } = useParams<
+  const { movieId, theaterId, movieDate } = useParams<
     keyof seatParams
   >() as seatParams;
+
+  const { movieData, isLoading, isError } = useDetailMovie(movieId);
 
   const rows = 10; // Change this value to set the number of rows
   const columns = 12; // Change this value to set the number of columns
@@ -35,7 +38,51 @@ function SeatBooking() {
 
   return (
     <Container>
-      <Box>{movieName + theaterName + showtime}</Box>
+      <Box>
+        <Stack direction={"row"}>
+          <Box
+            component="img"
+            src={movieData?.movieImg}
+            sx={{
+              maxWidth: { xs: 20, md: 50 },
+              borderRadius: "50%",
+            }}
+          ></Box>
+          <Stack marginLeft={2}>
+            <Typography
+              variant="h3"
+              fontWeight={"600"}
+              textTransform={"uppercase"}
+            >
+              {movieData?.title}
+            </Typography>
+            <Stack
+              direction={"row"}
+              spacing={2}
+              divider={<Divider orientation="vertical" flexItem />}
+            >
+              <Typography
+                fontFamily={"gordita,Helvetica,sans-serif"}
+                textTransform={"uppercase"}
+              >
+                {movieData?.genre}
+              </Typography>
+              <Typography
+                fontFamily={"gordita,Helvetica,sans-serif"}
+                textTransform={"uppercase"}
+              >
+                {movieData?.duration}
+              </Typography>
+              <Typography
+                fontFamily={"gordita,Helvetica,sans-serif"}
+                textTransform={"uppercase"}
+              >
+                AMC
+              </Typography>
+            </Stack>
+          </Stack>
+        </Stack>
+      </Box>
       <Box
         sx={{
           background: "#3b3b3b",
