@@ -1,5 +1,4 @@
-import { Box } from "@mui/material";
-import React from "react";
+import WeekendIcon from "@mui/icons-material/Weekend";
 
 interface props {
   status: string;
@@ -24,18 +23,16 @@ function Seat({ status, onClick }: props) {
   }
 
   return (
-    <Box
+    <WeekendIcon
       onClick={onClick}
       sx={{
         display: "inline-block",
-        background: seatColor,
+        color: seatColor,
         width: "20px",
         height: "18px",
-        borderTopLeftRadius: "10px",
-        borderTopRightRadius: "10px",
         transition: "transform 0.3s ease-in-out",
-        backgroundColor: seatColor,
         position: "relative",
+        transform: "rotate(180deg)",
         margin: "5px",
         top: "1px",
         ":nth-of-type(8n + 2)": { marginRight: 5 },
@@ -47,7 +44,7 @@ function Seat({ status, onClick }: props) {
           transform: "scale(1.2)",
         },
       }}
-    ></Box>
+    ></WeekendIcon>
   );
 }
 
