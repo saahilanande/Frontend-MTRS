@@ -10,8 +10,8 @@ export interface theaterShema {
   capacity: String;
 }
 
-const useFetchTheater = (theaterId: number) => {
-  const [theaterData, settheaterData] = useState<theaterShema[]>([]);
+const useFetchTheater = (theaterId: string) => {
+  const [theaterData, settheaterData] = useState<theaterShema>();
   const [isLoading, setisLoading] = useState(false);
   const [isError, setIsErrorr] = useState("");
 
